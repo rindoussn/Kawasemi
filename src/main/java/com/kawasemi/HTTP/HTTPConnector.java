@@ -1,6 +1,6 @@
 package main.java.com.kawasemi.HTTP;
 
-import main.java.com.kawasemi.Utility;
+import main.java.com.kawasemi.AbstractUtility;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -8,9 +8,9 @@ import java.net.URL;
 /**
  * Wrapper of java.netHttpURLConnection
  */
-public class HTTPConnector extends Utility {
+public class HTTPConnector extends AbstractUtility {
 
-    public HttpURLConnection connect;
+    private HttpURLConnection connect;
     public HTTPResponse response;
 
     /**
@@ -35,11 +35,10 @@ public class HTTPConnector extends Utility {
     /**
      * Set header fields
      *
-     * @param field request field
      * @param value field value
      */
-    public void setHeader(String field, String value) {
-        connect.setRequestProperty(field, value);
+    public void setAuthorization(String value) {
+        connect.setRequestProperty("Authorization", value);
     }
 
     /**

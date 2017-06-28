@@ -1,6 +1,6 @@
 package main.java.com.kawasemi.OAuth;
 
-import main.java.com.kawasemi.Utility;
+import main.java.com.kawasemi.AbstractUtility;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -15,8 +15,8 @@ import java.util.TreeMap;
 /**
  * Created by suzuno on 6/26/17.
  */
-public class OAuthGenerator extends Utility{
-    private Map oauthParams;
+public class OAuthGenerator extends AbstractUtility {
+    private Map<String, String> oauthParams;
     private boolean firstInit = true;
 
     private String consumerKey;
@@ -69,12 +69,23 @@ public class OAuthGenerator extends Utility{
 
     public String getAuthorizationValue(Map bodyParams) {
         generateStamps();
-        String authValue = generateSignature(bodyParams);
+        oauthParams.put("oauth_signature", generateSignature(bodyParams));
+
+        String authValue = "";
+        boolean first = true;
+        for(Map.Entry<String, String> entry : oauthParams.entrySet()) {
+            if (first) {
+                authValue = entry.getKey() + "=\"" + urlEncode(entry.getValue()) + "\"";
+                first = false;
+            } else {
+                authValue += ", " + entry.getKey() + "=\"" + urlEncode(entry.getValue()) + "\"";
+            }
+        }
         return "OAuth " + authValue;
     }
 
     private void generateStamps() {
-        oauthParams.put("oauth_timestamp", String.valueOf((int)System.currentTimeMillis() / 1000L));
+        oauthParams.put("oauth_timestamp", String.valueOf(System.currentTimeMillis() / 1000L));
         oauthParams.put("oauth_nonce", String.valueOf(Math.random()));
     }
 
@@ -97,6 +108,7 @@ public class OAuthGenerator extends Utility{
         }
 
         str = method + "&" + urlEncode(url) + "&" + urlEncode(str);
+        System.out.println(str);
         String key = urlEncode(consumerSecret) + "&" + urlEncode(accessTokenSecret);
 
         String signature = "";

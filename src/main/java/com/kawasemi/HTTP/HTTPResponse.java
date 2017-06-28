@@ -1,6 +1,6 @@
 package main.java.com.kawasemi.HTTP;
 
-import main.java.com.kawasemi.Utility;
+import main.java.com.kawasemi.AbstractUtility;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * HTTP Responce Manager
  */
-public class HTTPResponse extends Utility {
+public class HTTPResponse extends AbstractUtility {
 
     private Map header;
     private int code;
@@ -77,31 +77,5 @@ public class HTTPResponse extends Utility {
      */
     public ArrayList getBody() {
         return bodys;
-    }
-
-    /**
-     * Print HTTP response header fields
-     */
-    public void printHeaderFields() {
-        Iterator i = header.keySet().iterator();
-        while (true) {
-            String key = (String) i.next();
-            System.out.println(key + " : " + header.get(key));
-            if (!i.hasNext()) break;
-        }
-    }
-
-    /**
-     * Print HTTP response code
-     */
-    public void printCode() {
-        System.out.println(code);
-    }
-
-    /**
-     * Print HTTP response massage
-     */
-    public void printMessage() {
-        System.out.println(code);
     }
 }
