@@ -18,7 +18,7 @@ public class AbstractRestController extends AbstractUtility{
     public HTTPConnector connector;
     private OAuthGenerator oauthGenerator;
 
-    protected Map<String, String> params = new HashMap();
+    private Map<String, String> params = new HashMap();
 
     public void send() {
         connector = new HTTPConnector();
@@ -37,6 +37,15 @@ public class AbstractRestController extends AbstractUtility{
     }
 
     /**
+     * add url query
+     * @param key
+     * @param value
+     */
+    protected void addQuery(String key, String value) {
+        params.put(key,urlEncode(value));
+    }
+
+    /**
      * Generate url query
      * @return
      */
@@ -44,7 +53,7 @@ public class AbstractRestController extends AbstractUtility{
         String str = "";
 
         for(Map.Entry<String, String> entry : params.entrySet()) {
-            str += "&" + entry.getKey() + "=" + urlEncode(entry.getValue());
+            str += "&" + entry.getKey() + "=" + entry.getValue();
         }
         str = str.substring(1);
         return "?" + str;

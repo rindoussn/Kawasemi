@@ -11,8 +11,7 @@ public class Update extends AbstractRestController {
         setActions("https://api.twitter.com/1.1/statuses/update.json","POST");
     }
 
-    public void setStatus(String text) {
-        text = urlEncode(text);
-        params.put("status", text);
+    public void setStatus(String value) {
+        addQuery("status",value);
     }
 }
