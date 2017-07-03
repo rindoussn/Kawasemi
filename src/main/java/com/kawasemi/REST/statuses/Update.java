@@ -12,6 +12,7 @@ public class Update extends AbstractRestController {
     }
 
     public void setStatus(String text) {
+        text = urlEncode(text);
         params.put("status", text);
     }
 }
