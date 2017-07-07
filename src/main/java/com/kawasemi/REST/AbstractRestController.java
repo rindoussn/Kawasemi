@@ -1,8 +1,8 @@
-package main.java.com.kawasemi.REST;
+package com.kawasemi.REST;
 
-import main.java.com.kawasemi.AbstractUtility;
-import main.java.com.kawasemi.HTTP.HTTPConnector;
-import main.java.com.kawasemi.OAuth.OAuthGenerator;
+import com.kawasemi.AbstractUtility;
+import com.kawasemi.HTTP.HTTPConnector;
+import com.kawasemi.OAuth.OAuthGenerator;
 
 import java.net.URLEncoder;
 import java.util.HashMap;

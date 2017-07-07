@@ -1,4 +1,4 @@
-package main.java.com.kawasemi;
+package com.kawasemi;
 
 /**
  * Created by suzuno on 6/26/17.

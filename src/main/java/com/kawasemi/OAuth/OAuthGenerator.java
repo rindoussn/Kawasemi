@@ -1,6 +1,7 @@
-package main.java.com.kawasemi.OAuth;
+package com.kawasemi.OAuth;
 
-import main.java.com.kawasemi.AbstractUtility;
+import com.google.gson.annotations.Since;
+import com.kawasemi.AbstractUtility;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

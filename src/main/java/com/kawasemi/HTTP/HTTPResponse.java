@@ -1,6 +1,6 @@
-package main.java.com.kawasemi.HTTP;
+package com.kawasemi.HTTP;
 
-import main.java.com.kawasemi.AbstractUtility;
+import com.kawasemi.AbstractUtility;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -17,7 +17,7 @@ public class HTTPResponse extends AbstractUtility {
     private Map header;
     private int code;
     private String message;
-    private ArrayList<String> bodys;
+    private String body;
 
     /**
      * Constructor - Read response header and body data.
@@ -31,11 +31,7 @@ public class HTTPResponse extends AbstractUtility {
             message = connection.getResponseMessage();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            while (true) {
-                String line = br.readLine();
-                if (line != null) bodys.add(line);
-                else break;
-            }
+            body = br.readLine();
             br.close();
 
         } catch (Exception e) {
@@ -73,9 +69,9 @@ public class HTTPResponse extends AbstractUtility {
     /**
      * Return Body
      *
-     * @return body(Arraylist)
+     * @return body
      */
-    public ArrayList getBody() {
-        return bodys;
+    public String getBody() {
+        return body;
     }
 }

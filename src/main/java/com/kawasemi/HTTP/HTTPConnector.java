@@ -1,6 +1,6 @@
-package main.java.com.kawasemi.HTTP;
+package com.kawasemi.HTTP;
 
-import main.java.com.kawasemi.AbstractUtility;
+import com.kawasemi.AbstractUtility;
 
 import java.net.HttpURLConnection;
 import java.net.URL;

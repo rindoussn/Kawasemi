@@ -1,7 +1,7 @@
-package main.java.com.kawasemi.REST.statuses;
+package com.kawasemi.REST.statuses;
 
-import main.java.com.kawasemi.REST.AbstractRestController;
-import main.java.com.kawasemi.REST.RESTInvalidValueException;
+import com.kawasemi.REST.AbstractRestController;
+import com.kawasemi.REST.RESTInvalidValueException;
 
 /**
  * GET status/user_timeline<br>

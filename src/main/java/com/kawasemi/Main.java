@@ -1,19 +1,30 @@
-package main.java.com.kawasemi;
+package com.kawasemi;
 
 
-import main.java.com.kawasemi.HTTP.HTTPConnector;
-import main.java.com.kawasemi.REST.statuses.Update;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.kawasemi.HTTP.HTTPConnector;
+import com.kawasemi.Object.Tweet;
+import com.kawasemi.REST.statuses.Update;
+import com.kawasemi.REST.statuses.UserTimeline;
 
 /**
  * Created by suzuno on 6/26/17.
  */
 public class Main {
     public static void main(String[] args) {
-        Update ud = new Update();
-        ud.setStatus("foo bar baz");
-        ud.send();
-        System.out.println(ud.connector.response.getCode());
-        System.out.println(ud.connector.response.getMassage());
-        System.out.println(ud.connector.response.getBody());
+        UserTimeline ut = new UserTimeline();
+        try {
+            ut.setScreenName("");
+            ut.send();
+
+        } catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
+        String str = ut.connector.response.getBody();
+        Gson gson = new Gson();
+        Tweet[] tweet = gson.fromJson(str, Tweet[].class);
+        System.out.println(tweet[0].getText());
     }
 }

@@ -1,4 +1,4 @@
-package main.java.com.kawasemi.REST;
+package com.kawasemi.REST;
 
 /**
  * Created by suzuno on 7/3/17.
